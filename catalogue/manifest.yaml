@@ -9,8 +9,7 @@ metadata:
     component: catalogue
 data:
   MONGO: "true"
-  MONGO_URL: "mongodb://mongodb:27017/catalogue" 
-
+  MONGO_URL: "mongodb://mongodb:27017/catalogue"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -34,14 +33,13 @@ spec:
         project: roboshop
         tier: backend
         component: catalogue
-  spec:
-  containers:
-    - name: catalogue
-      image: sravankumar152/catalogue:1.0.0
-      envFrom:
-      - ConfigMapRef:
-        name: catalogue
-
+    spec:
+      containers:
+        - name: catalogue
+          image: sravankumar152/catalogue:1.0.0
+          envFrom:
+            - configMapRef:
+                name: catalogue
 ---
 apiVersion: v1
 kind: Service
@@ -58,6 +56,6 @@ spec:
     tier: backend
     component: catalogue
   ports:
-  - protocal: TCP
-    ports: 8080
-    targartPort: 8080
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
