@@ -5,11 +5,11 @@ metadata:
   namespace: roboshop
   labels:
     project: roboshop
-    tier: backend
+    tier: db
     component: rabbitmq
 data:
-  RABBITMQ_DEFAULT_USER: "cm9ib3Nob3AK"
-  RABBITMQ_DEFAULT_PASS: "cm9ib3Nob3AxMjMK"
+  RABBITMQ_DEFAULT_USER: roboshop
+  RABBITMQ_DEFAULT_PASS: roboshop123
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -18,48 +18,28 @@ metadata:
   namespace: roboshop
   labels:
     project: roboshop
-    tier: backend
+    tier: db
     component: rabbitmq
 spec:
   replicas: 1
   selector:
     matchLabels:
       project: roboshop
-      tier: backend
+      tier: db
       component: rabbitmq
   template:
     metadata:
       labels:
         project: roboshop
-        tier: backend
+        tier: db
         component: rabbitmq
     spec:
       containers:
-        - name: rabbitmq
-          image: rabbitmq:3
-          imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "200m"
-            limits:
-              memory: "300Mi"
-              cpu: "300m"
-          readinessProbe:
-            tcpSocket:
-              port: 8080
-            failureThreshold: 2
-            periodSeconds: 10
-            initialDelaySeconds: 15
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8080
-            failureThreshold: 2
-            periodSeconds: 10
-          envFrom:
-            - configMapRef:
-                name: rabbitmq
+      - name: rabbitmq
+        image: rabbitmq:3
+        envFrom:
+        - configMapRef:
+            name: rabbitmq
 ---
 apiVersion: v1
 kind: Service
@@ -68,14 +48,14 @@ metadata:
   namespace: roboshop
   labels:
     project: roboshop
-    tier: backend
+    tier: db
     component: rabbitmq
 spec:
   selector:
     project: roboshop
-    tier: backend
+    tier: db
     component: rabbitmq
   ports:
-    - protocol: TCP
-      port: 5672
-      targetPort: 5672
+  - protocol: TCP
+    port: 5672
+    targetPort: 5672
