@@ -22,7 +22,7 @@ metadata:
     tier: backend
     component: user
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       project: roboshop
@@ -38,6 +38,7 @@ spec:
       containers:
         - name: user
           image: sravankumar152/user:1.0.0
+          imagePullPolicy: Always
           resources:
             requests:
               memory: "64Mi"

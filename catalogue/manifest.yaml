@@ -21,7 +21,7 @@ metadata:
     tier: backend
     component: catalogue
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       project: roboshop
@@ -37,6 +37,7 @@ spec:
       containers:
         - name: catalogue
           image: sravankumar152/catalogue:1.0.0
+          imagePullPolicy: Always
           resources:
             requests:
               memory: "64Mi"
