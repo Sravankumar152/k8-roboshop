@@ -36,9 +36,11 @@ spec:
   spec:
   - name: catalogue
     image: sravankumar152/catalogue:1.0.0
+    envFrom:
+    - ConfigMapRef:
+        name: catalogue
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
