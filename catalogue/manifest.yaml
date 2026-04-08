@@ -23,21 +23,23 @@ metadata:
     component: catalogue
 spec:
   replicas: 3
-  matchLabels:
-    project: roboshop
-    tier: backend
-    component: catalogue
-  template:
-  metadata:
-    labels:
+  selector:
+    matchLabels:
       project: roboshop
       tier: backend
       component: catalogue
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        tier: backend
+        component: catalogue
   spec:
-  - name: catalogue
-    image: sravankumar152/catalogue:1.0.0
-    envFrom:
-    - ConfigMapRef:
+  containers:
+    - name: catalogue
+      image: sravankumar152/catalogue:1.0.0
+      envFrom:
+      - ConfigMapRef:
         name: catalogue
 
 ---
