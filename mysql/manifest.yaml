@@ -27,7 +27,7 @@ spec:
           image: mysql:8.0
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "RoboShop@1"
+              value: "Um9ib1Nob3BAMQo="
 ---
 apiVersion: v1
 kind: Service
