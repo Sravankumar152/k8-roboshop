@@ -27,8 +27,8 @@ metadata:
     component: payment
 spec:
   replicas: 2
-  matchLabels:
-    selector:
+  selector:
+    matchLabels:
       project: roboshop
       tier: backend
       component: roboshop
