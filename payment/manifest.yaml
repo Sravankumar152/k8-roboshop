@@ -63,8 +63,8 @@ spec:
             failureThreshold: 2
             periodSeconds: 10
           envFrom:
-            configMapRef:
-              - name: payment
+            - configMapRef:
+                name: payment
 
 ---
 
