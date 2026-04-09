@@ -31,13 +31,13 @@ spec:
     matchLabels:
       project: roboshop
       tier: backend
-      component: roboshop
+      component: payment
   template:
     metadata:
       labels:
         project: roboshop
         tier: backend
-        component: roboshop
+        component: payment
     spec:
       containers:
         - name: payment
